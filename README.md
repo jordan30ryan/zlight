@@ -12,3 +12,12 @@ on button press, contact server to change color
 
 ## Setup
 pip install Flask
+pip install rpi.gpio
+
+
+add to /etc/rc.local:
+
+python /home/pi/src/zlight/client/client.py &
+
+
+
