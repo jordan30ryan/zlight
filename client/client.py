@@ -42,7 +42,7 @@ def get_button_input():
         try:
             if GPIO.input(10) == GPIO.HIGH:
                 print('Button was pushed!')
-                set_light_color()
+                change_light_color()
         except Exception as e:
             print('error in get_button_input')
             print(e)
@@ -60,7 +60,7 @@ def set_light():
 
 
 def main():
-    change_light_color()
+#    change_light_color()
     t1 = threading.Thread(target=get_button_input)
     t2 = threading.Thread(target=set_light)
 
