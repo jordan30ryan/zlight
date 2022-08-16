@@ -1,16 +1,14 @@
-Color change lights server
+# Color change lights server
 
-Server
+## Server
 get/change color of light
 
 
-Devices
+## Devices
 on startup, get light color and set 
 
 on button press, contact server to change color 
 
 
-Setup
-mariadb setup archlinux wiki 
+## Setup
 pip install Flask
-pip install mysql-connector-python
