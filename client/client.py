@@ -8,6 +8,10 @@ def get_light_color():
     url = "http://" + URL + PORT
     request = url + "/color"
     r = requests.get(request)
+    print(r)
 
 # set light status
 # TODO
+
+if __name__ == "__main__":
+    get_light_color()
