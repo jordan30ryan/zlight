@@ -1,28 +1,29 @@
 from flask import Flask
 from flask import request
+import json 
 
 app = Flask(__name__)
 
 COLOR = { 'color' : 0 }
 
-# GET color
 @app.route('/color', methods=['POST', 'GET'])
 def manage_color():
     if request.method == 'POST':
-        color = request.form['color']
+        parameters = json.loads(request.data)
+        color = parameters['color']
         print(color)
-        db_set_color(color)
+        set_color(color)
         return 'success'
     if request.method == 'GET':
-        color = db_get_color()
+        color = get_color()
         return str(color)
     return
 
 
-def db_get_color():
+def get_color():
     return COLOR['color']
 
-def db_set_color(new_color):
+def set_color(new_color):
     COLOR['color'] = new_color
     return
 
