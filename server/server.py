@@ -9,10 +9,13 @@ COLOR = { 'color' : 0 }
 @app.route('/color', methods=['POST', 'GET'])
 def manage_color():
     if request.method == 'POST':
-        parameters = json.loads(request.data)
-        color = parameters['color']
-        print(color)
-        set_color(color)
+        if request.data:
+            parameters = json.loads(request.data)
+            color = parameters['color']
+            print(color)
+            set_color(color)
+        else:
+            set_color_serverside()
         return 'success'
     if request.method == 'GET':
         color = get_color()
@@ -25,6 +28,10 @@ def get_color():
 
 def set_color(new_color):
     COLOR['color'] = new_color
+    return
+
+def set_color_serverside():
+    COLOR['color'] = COLOR['color'] + 1
     return
 
 if __name__ == "__main__":
