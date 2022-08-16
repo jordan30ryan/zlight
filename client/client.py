@@ -12,11 +12,11 @@ def get_light_color():
 
 # set light status
 # TODO
-def set_light_color(color):
+def set_light_color(color_num):
     url = "http://" + URL + PORT
     request = url + "/color"
-    color.
-    r = requests.post(request, )
+    params = { 'color' : color_num }
+    r = requests.post(request, params)
     print(r.text)
 
 if __name__ == "__main__":
