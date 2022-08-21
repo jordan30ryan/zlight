@@ -13,6 +13,7 @@ on button press, contact server to change color
 ## Setup
 pip install Flask
 pip install rpi.gpio
+pip install -U flask-cors
 
 
 add to /etc/rc.local:

@@ -1,12 +1,19 @@
 from flask import Flask
 from flask import request
+from flask_cors import CORS, cross_origin
 import json 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-COLOR = { 'color' : 0 }
+PURPLE = 3
+GREEN = 4
+
+COLOR = { 'color' : PURPLE }
 
 @app.route('/color', methods=['POST', 'GET'])
+@cross_origin()
 def manage_color():
     if request.method == 'POST':
         if request.data:
@@ -31,7 +38,10 @@ def set_color(new_color):
     return
 
 def set_color_serverside():
-    COLOR['color'] = COLOR['color'] + 1
+    if COLOR['color'] == PURPLE:
+        COLOR['color'] = GREEN
+    else: 
+        COLOR['color'] = PURPLE
     return
 
 if __name__ == "__main__":
