@@ -1,0 +1,26 @@
+<html>
+    <head>
+    </head>
+    <body> 
+        <div/>
+    </body>
+    <script type="text/javascript">
+        URL = 'http://192.168.6.154:5000/color'
+        function getColor() {
+            fetch(URL, {
+                mode: 'cors',
+                headers: { 'Access-Control-Allow-Origin':'*' }
+            }).then((response) => response.text())
+            .then((data) => {
+                if (data == 3) {
+                    document.body.style.background = 'purple';
+                } else {
+                    document.body.style.background = 'green';
+                }
+            })
+        }
+
+        getColor()
+        window.setInterval(getColor, 1000)
+    </script>
+</html>
