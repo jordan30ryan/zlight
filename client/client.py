@@ -3,21 +3,20 @@ import json
 import time
 import threading
 
+import board
+import neopixel
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
 URL = '192.168.6.154'
 PORT = ':5000'
 
 # Push button input settings
-ButtonChannel = 7
-LightChannel = 12
+ButtonChannel = 4
 GPIO.setwarnings(False) # Ignore warning for now
-GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
 GPIO.setup(ButtonChannel, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) 
-GPIO.setup(LightChannel, GPIO.OUT) 
 
-
-# TODO light output settings
+# Neopixel RGB output settings
+pixels = neopixel.NeoPixel(board.D18, 1, brightness=0.2)
 
 def get_light_color():
     url = 'http://' + URL + PORT
@@ -25,10 +24,11 @@ def get_light_color():
 
     try:
         r = requests.get(request)
-        return r.text
+        print(r)
+        return r.json()['color']
     except Exception as e:
         print('error getting light color')
-        print(e)
+        raise e
 
 def change_light_color():
     url = "http://" + URL + PORT
@@ -52,19 +52,20 @@ def get_button_input(channel):
 def set_light(): 
     while True:
         try:
-            c = get_light_color()
-            print(c)
-            # set light pin to color 
-            if c == '3':
-                st = GPIO.HIGH
-            else:
-                st = GPIO.LOW
-            GPIO.output(LightChannel, st)
-
             time.sleep(1)
+
+            c = get_light_color()
+            colors = hex_to_color_tuple(c)
+            print(colors)
+            # G, R, B
+            pixels[0] = (colors[1], colors[0], colors[2])
         except Exception as e:
             print('error in set_light')
             print(e)
+
+
+def hex_to_color_tuple(hex_str):
+    return tuple(int(hex_str[i:i+2], 16) for i in (0, 2, 4))
 
 
 def main():
