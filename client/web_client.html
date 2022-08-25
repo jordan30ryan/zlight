@@ -8,13 +8,9 @@
             fetch(URL, {
                 mode: 'cors',
                 headers: { 'Access-Control-Allow-Origin':'*' }
-            }).then((response) => response.text())
+            }).then((response) => response.json())
             .then((data) => {
-                if (data == 3) {
-                    document.body.style.background = 'purple';
-                } else {
-                    document.body.style.background = 'green';
-                }
+                document.body.style.background = '#' + data.color;
             })
         }
 

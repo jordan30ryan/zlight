@@ -7,8 +7,8 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-PURPLE = 3
-GREEN = 4
+PURPLE = 'a64dff'
+GREEN = '00b359'
 
 COLOR = { 'color' : PURPLE }
 
@@ -26,7 +26,7 @@ def manage_color():
         return 'success'
     if request.method == 'GET':
         color = get_color()
-        return str(color)
+        return {'color': color}
     return
 
 
