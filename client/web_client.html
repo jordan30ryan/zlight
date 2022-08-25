@@ -1,8 +1,6 @@
 <html>
-    <head>
-    </head>
     <body> 
-        <div/>
+        <button onclick="changeColor()" style="width:100;height:100"/>
     </body>
     <script type="text/javascript">
         URL = 'http://192.168.6.154:5000/color'
@@ -17,6 +15,14 @@
                 } else {
                     document.body.style.background = 'green';
                 }
+            })
+        }
+
+        function changeColor() {
+            fetch(URL, {
+                method: 'POST',
+                mode: 'cors',
+                headers: { 'Access-Control-Allow-Origin':'*' }
             })
         }
 
