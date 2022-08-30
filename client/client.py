@@ -10,6 +10,10 @@ import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 URL = '192.168.6.154'
 PORT = ':5000'
 
+key = open("/usr/etc/key", "r").readline()
+token = "Bearer " + key
+AUTH_HEADERS = {"Authorization": token}
+
 # Push button input settings
 ButtonChannel = 4
 GPIO.setwarnings(False) # Ignore warning for now
@@ -23,7 +27,7 @@ def get_light_color():
     request = url + '/color'
 
     try:
-        r = requests.get(request)
+        r = requests.get(request, headers=AUTH_HEADERS)
         print(r)
         return r.json()['color']
     except Exception as e:
@@ -35,7 +39,7 @@ def change_light_color():
     request = url + "/color"
 
     try:
-        r = requests.post(request)
+        r = requests.post(request, headers=AUTH_HEADERS)
         print(r.text)
     except Exception as e: 
         print('error sending light color')
