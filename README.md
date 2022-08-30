@@ -16,6 +16,8 @@ pip install -U flask-cors
 pip install Flask-JWT
 pip install flask_httpauth
 
+Generate key, place in /usr/etc/key
+
 
 add to /etc/rc.local:
 python /home/pi/src/zlight/client/client.py &

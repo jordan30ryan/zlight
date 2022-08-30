@@ -9,7 +9,7 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 auth = HTTPTokenAuth(scheme='Bearer')
-key = open("/usr/etc/key", "r").readline()
+key = open("/usr/etc/key", "r").readline().rstrip('\n')
 
 PURPLE = 'a64dff'
 GREEN = '00b359'
