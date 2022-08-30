@@ -1,18 +1,27 @@
 from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
+from flask_httpauth import HTTPTokenAuth
 import json 
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+auth = HTTPTokenAuth(scheme='Bearer')
+key = open("/usr/etc/key", "r").readline()
+
 PURPLE = 'a64dff'
 GREEN = '00b359'
 
 COLOR = { 'color' : PURPLE }
 
+@auth.verify_token
+def verify_token(token): 
+    return token == key
+
 @app.route('/color', methods=['POST', 'GET'])
+@auth.login_required
 @cross_origin()
 def manage_color():
     if request.method == 'POST':

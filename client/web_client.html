@@ -7,7 +7,9 @@
         function getColor() {
             fetch(URL, {
                 mode: 'cors',
-                headers: { 'Access-Control-Allow-Origin':'*' }
+                headers: { 'Access-Control-Allow-Origin':'*',
+                           'Authorization':'Bearer b'
+                        }
             }).then((response) => response.json())
             .then((data) => {
                 document.body.style.background = '#' + data.color;
@@ -18,7 +20,9 @@
             fetch(URL, {
                 method: 'POST',
                 mode: 'cors',
-                headers: { 'Access-Control-Allow-Origin':'*' }
+                headers: { 'Access-Control-Allow-Origin':'*',
+                           'Authorization':'Bearer b'
+                        }
             })
         }
 

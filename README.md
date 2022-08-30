@@ -12,8 +12,9 @@ on button press, contact server to change color
 
 ## Setup
 pip install Flask
-pip install rpi.gpio
 pip install -U flask-cors
+pip install Flask-JWT
+pip install flask_httpauth
 
 
 add to /etc/rc.local:
@@ -26,6 +27,7 @@ commenting out the line dtparam=audio=on in /boot/config.txt
 
 NOTE: Not all commands here may have been necessary.
 
+pip install rpi.gpio
 
     sudo apt-get install scons swig libev-dev python3-dev python3-setuptools
     pip install pytest-runner
