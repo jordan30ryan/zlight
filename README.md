@@ -10,7 +10,8 @@ on startup, get light color and set
 on button press, contact server to change color 
 
 
-## Setup
+## Server Setup
+python3 -m venv venv
 pip install Flask
 pip install -U flask-cors
 pip install Flask-JWT
@@ -19,6 +20,7 @@ pip install flask_httpauth
 Generate key, place in /usr/etc/key
 
 
+## PI Setup
 add to /etc/rc.local:
 python /home/pi/src/zlight/client/client.py &
 
@@ -42,19 +44,3 @@ pip install rpi.gpio
     https://learn.adafruit.com/adafruit-neopixel-uberguide/python-circuitpython#python-installation-of-neopixel-library-17-9sudo sudo sudo 
     pip install neopixel
 
-
-## AWS Notes
-Create EC2
-
-
-
-
-
-## Old 
-
-    git clone --recurse-submodules https://github.com/jackw01/led-control.git
-    cd led-control
-    git checkout tags/v2.0.0
-    sudo su
-    python3 setup.py develop
-    ledcontrol --led_count 150 (add --led_pixel_order GRBW if using RGBW LEDs)
