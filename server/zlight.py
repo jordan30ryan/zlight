@@ -21,7 +21,7 @@ def verify_token(token):
     return token == key
 
 @app.route('/color', methods=['POST', 'GET'])
-#@auth.login_required
+@auth.login_required
 @cross_origin()
 def manage_color():
     if request.method == 'POST':
