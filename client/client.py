@@ -11,7 +11,7 @@ URL = '52.7.88.121'
 PORT = ':5000'
 
 key = open("/usr/etc/key", "r").readline()
-token = "Bearer " + key
+token = "Bearer " + key.rstrip('\n')
 AUTH_HEADERS = {"Authorization": token}
 
 # Push button input settings
