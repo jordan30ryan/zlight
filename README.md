@@ -12,43 +12,19 @@ on button press, contact server to change color
 
 ## Server Setup
 python3 -m venv venv
-pip install Flask
-pip install -U flask-cors
-pip install Flask-JWT
-pip install flask_cors
-pip install flask_httpauth
+pip install -r requirements.txt
 
 Generate key, place in /usr/etc/key
 
 ### DEV SERVER
 python -m flask --app server/server run --host 0.0.0.0
 
-### PROD SERVER
-sudo yum install httpd
-sudo yum install python3-mod_wsgi
-
-sudo ln -sT /home/ec2-user/zlight/server /var/www/html/zlight
-
-
-Append to file: /etc/httpd/conf/httpd.conf
-<VirtualHost *>
-    ServerName example.com
-
-    WSGIDaemonProcess server 
-    WSGIScriptAlias / /var/www/http/zlight/app.wsgi
-
-    <Directory /var/www/http/zlight>
-        WSGIProcessGroup server
-        WSGIApplicationGroup %{GLOBAL}
-        Order deny,allow
-        Allow from all
-    </Directory>
-</VirtualHost>
-
-
-
-sudo systemctl start httpd
-sudo systemctl enable httpd
+### PROD SERVER ON EC2
+yum install gcc gcc-c++ make 
+sudo yum install python3-devel
+(outside of venv) 
+pip install uwsgi
+uwsgi -s /tmp/zlight.sock --manage-script-name --mount /=zlight:app --virtualenv /home/ec2-user/zlight/server/venv --plugin python3 --http :5000
 
 
 ## PI Setup
