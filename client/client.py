@@ -7,7 +7,7 @@ import board
 import neopixel
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
-URL = '192.168.6.154'
+URL = '52.7.88.121'
 PORT = ':5000'
 
 key = open("/usr/etc/key", "r").readline()
