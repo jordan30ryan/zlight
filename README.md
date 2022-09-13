@@ -6,7 +6,6 @@ get/change color of light
 
 ## Devices
 on startup, get light color and set 
-
 on button press, contact server to change color 
 
 
@@ -50,4 +49,19 @@ pip install rpi.gpio
     https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/installing-circuitpython-on-raspberry-pi
     https://learn.adafruit.com/adafruit-neopixel-uberguide/python-circuitpython#python-installation-of-neopixel-library-17-9sudo sudo sudo 
     pip install neopixel
+
+
+### Wifi setup
+
+Insert SD into other pc, and the wpa_supplicant.conf file to its root. Add these lines and fill the info on the network:
+
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=US
+
+network={
+    ssid=""
+    psk=""
+}
+
 
