@@ -13,8 +13,13 @@ key = open("/usr/etc/key", "r").readline().rstrip('\n')
 
 PURPLE = 'a64dff'
 GREEN = '00b359'
+OLIVE = '264c00'
+DERRY = '0000fe'
+PANCAKE = '83c1ff'
 
-COLOR = { 'color' : PURPLE }
+COLOR_ORDER = [PURPLE, GREEN, OLIVE, DERRY, PANCAKE]
+
+COLOR = { 'color' : PURPLE, 'index' : 0 }
 
 @auth.verify_token
 def verify_token(token): 
@@ -47,10 +52,10 @@ def set_color(new_color):
     return
 
 def set_color_serverside():
-    if COLOR['color'] == PURPLE:
-        COLOR['color'] = GREEN
-    else: 
-        COLOR['color'] = PURPLE
+    idx = COLOR['index']
+    idx2 = (idx + 1) % len(COLOR_ORDER)
+    COLOR['index'] = idx2
+    COLOR['color'] = COLOR_ORDER[idx2]
     return
 
 if __name__ == "__main__":
